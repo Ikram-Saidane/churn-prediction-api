@@ -1,6 +1,5 @@
 __pycache__/
 *.pyc
-*.pkl
 .env
 mlruns/
 .pytest_cache/
@@ -8,3 +7,4 @@ mlruns/
 dist/
 .venv/
 venv/
+notebooks/.ipynb_checkpoints/
