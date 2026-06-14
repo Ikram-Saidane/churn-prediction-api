@@ -1,0 +1,43 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Installer les dépendances
+        run: pip install -r requirements.txt
+
+      - name: Vérifier la structure du projet
+        run: |
+          python -c "import fastapi; print('FastAPI OK')"
+          python -c "import xgboost; print('XGBoost OK')"
+          python -c "import mlflow; print('MLflow OK')"
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Construire l'image Docker
+        run: docker build -t churn-api .
+
+      - name: Tester le build
+        run: |
+          docker run -d -p 8000:8000 --name test-container churn-api
+          sleep 10
+          curl -f http://localhost:8000/health
+          docker stop test-container
