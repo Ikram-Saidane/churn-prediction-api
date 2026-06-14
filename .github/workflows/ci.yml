@@ -32,12 +32,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Vérifier les fichiers model
+        run: |
+          ls -la model/
+          echo "Fichiers model présents"
+
       - name: Construire l'image Docker
-        run: docker build -t churn-api .
+        run: docker build --no-cache -t churn-api .
 
       - name: Tester le build
         run: |
           docker run -d -p 8000:8000 --name test-container churn-api
-          sleep 10
+          sleep 15
           curl -f http://localhost:8000/health
           docker stop test-container
