@@ -259,13 +259,10 @@ churn-prediction-api/
 ##  Auteure
 
 **Ikram Saidane** — M1 IASD, Université Tunis Dauphine (2025–2026)  
-Spécialisation : Machine Learning · MLOps · Data Science
+
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Ikram_Saidane-blue)](https://linkedin.com/in/ikram-saidane)
 [![GitHub](https://img.shields.io/badge/GitHub-Ikram--Saidane-black)](https://github.com/Ikram-Saidane)
 
 ---
 
-##  Licence
-
-MIT License — libre d'utilisation et de modification.
