@@ -21,25 +21,23 @@
 
 ## Contexte métier
 
-Le churn (résiliation) est un enjeu majeur pour les opérateurs télécom —
+Le churn (résiliation) est un enjeu majeur pour les opérateurs télécom 
 acquérir un nouveau client coûte 5x plus cher que d'en fidéliser un existant.
 
 Ce projet prédit la probabilité qu'un client résilie son abonnement à partir
 de ses caractéristiques (ancienneté, services souscrits, montant des factures...),
 permettant aux équipes marketing de cibler les clients à risque avant qu'ils partent.
 
-**Dataset :** IBM Telco Customer Churn — 7 043 clients, 20 features  
+**Dataset :** IBM Telco Customer Churn : 7 043 clients, 20 features  
 **Modèle :** Logistic Regression avec class_weight + seuil optimisé (0.596)  
 **AUC : 0.840 | F1 : 0.636 | Accuracy : 0.777**
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 IBM Telco Dataset (7043 lignes)
 
 │
-
-▼
 
 Feature Engineering
 
@@ -47,21 +45,17 @@ Feature Engineering
 
 │
 
-▼
-
 Entraînement + MLflow Tracking
 
 (LogReg · RandomForest · XGBoost · GradientBoosting)
 
 │
 
-▼
 
 Modèle sérialisé (.pkl)
 
 │
 
-▼
 
 API REST FastAPI ──────────────────┐
 
@@ -76,7 +70,6 @@ Image Docker               (churn-prediction-api
 
 │               .streamlit.app)
 
-▼
 
 CI/CD GitHub Actions
 
@@ -84,12 +77,9 @@ CI/CD GitHub Actions
 
 │
 
-▼
-
 Railway Cloud
 
 (API publique)
----
 
 ##  Résultats des modèles
 
@@ -135,7 +125,7 @@ uvicorn app.main:app --reload
 ### Interface Streamlit en local
 ```bash
 streamlit run streamlit_app.py
-# → Interface disponible sur http://localhost:8501
+#Interface disponible sur http://localhost:8501
 ```
 
 ---
@@ -145,7 +135,7 @@ streamlit run streamlit_app.py
 ### Vérifier que l'API est vivante
 ```bash
 curl https://churn-prediction-api-production-db1d.up.railway.app/health
-# → {"status":"ok","model_loaded":true}
+# {"status":"ok","model_loaded":true}
 ```
 
 ### Prédire le churn d'un client
